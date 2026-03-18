@@ -1,0 +1,24 @@
+<div class="product-list-container">
+  @if (products().length > 0) {
+    <div class="category-header">
+      <h2>{{ categoryName() }}</h2>
+      <span class="product-count">{{ products().length }} products</span>
+    </div>
+    
+    <div class="product-grid">
+      @for (product of products(); track product.id) {
+        <app-product-item
+          [product]="product"
+          (like)="onLike($event)"
+          (delete)="onDelete($event)"
+        />
+      }
+    </div>
+  } @else {
+    <div class="empty-state">
+      <div class="empty-icon">📦</div>
+      <h3>No Products Available</h3>
+      <p>There are no products in this category. Please check back later!</p>
+    </div>
+  }
+</div>  
